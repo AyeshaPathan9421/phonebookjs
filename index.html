@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phonebook</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Phonebook</h1>
+    <div class="form-container">
+        <label for="name">Name:</label>
+        <input type="text" id="name" placeholder="Enter name">
+        <label for="phone">Phone:</label>
+        <input type="text" id="phone" placeholder="Enter phone number">
+        <button onclick="addEntry()">Add</button>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Phone Number</th>
+            </tr>
+        </thead>
+        <tbody id="phonebook">
+        </tbody>
+    </table>
+
+    <script>
+        function addEntry() {
+            const nameInput = document.getElementById('name');
+            const phoneInput = document.getElementById('phone');
+
+            const name = nameInput.value.trim();
+            const phone = phoneInput.value.trim();
+
+            if (name && phone) {
+                const table = document.getElementById('phonebook');
+
+                const row = document.createElement('tr');
+                const nameCell = document.createElement('td');
+                const phoneCell = document.createElement('td');
+
+                nameCell.textContent = name;
+                phoneCell.textContent = phone;
+
+                row.appendChild(nameCell);
+                row.appendChild(phoneCell);
+                table.appendChild(row);
+
+                nameInput.value = '';
+                phoneInput.value = '';
+            } else {
+                alert('Please fill out both fields.');
+            }
+        }
+    </script>
+</body>
+</html>
