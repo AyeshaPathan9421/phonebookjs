@@ -1,47 +1,53 @@
-<style>
+
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
-            padding: 0;
-            background-color: #f4f4f9;
+            padding: 20px;
+            background-color: #f9f9f9;
         }
         h1 {
             text-align: center;
             color: #333;
         }
-        table {
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input, button {
             width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        table, th, td {
-            border: 1px solid #ccc;
-        }
-        th, td {
             padding: 10px;
-            text-align: left;
-        }
-        th {
-            background-color: #f0f0f0;
-        }
-        .form-container {
-            margin: 20px 0;
-        }
-        label {
-            margin-right: 10px;
-        }
-        input[type="text"] {
-            padding: 5px;
-            margin-right: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
         }
         button {
-            padding: 5px 10px;
-            background-color: #007bff;
+            background-color: #28a745;
             color: white;
-            border: none;
             cursor: pointer;
         }
         button:hover {
-            background-color: #0056b3;
+            background-color: #218838;
         }
-    </style>
+        .contact-list {
+            margin-top: 20px;
+        }
+        .contact {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+            border-radius: 4px;
+        }
+        .contact button {
+            width: auto;
+            background-color: #dc3545;
+        }
+        .contact button:hover {
+            background-color: #c82333;
+        }
+    

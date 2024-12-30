@@ -4,55 +4,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Phonebook</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h1>Phonebook</h1>
-    <div class="form-container">
-        <label for="name">Name:</label>
+    <div class="container">
         <input type="text" id="name" placeholder="Enter name">
-        <label for="phone">Phone:</label>
         <input type="text" id="phone" placeholder="Enter phone number">
-        <button onclick="addEntry()">Add</button>
+        <button onclick="addContact()">Add Contact</button>
+
+        <div class="contact-list" id="contactList">
+            
+        </div>
     </div>
-    <table>
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Phone Number</th>
-            </tr>
-        </thead>
-        <tbody id="phonebook">
-        </tbody>
-    </table>
 
     <script>
-        function addEntry() {
-            const nameInput = document.getElementById('name');
-            const phoneInput = document.getElementById('phone');
+        const contactList = document.getElementById('contactList');
 
-            const name = nameInput.value.trim();
-            const phone = phoneInput.value.trim();
+        function addContact() {
+            const name = document.getElementById('name').value.trim();
+            const phone = document.getElementById('phone').value.trim();
 
-            if (name && phone) {
-                const table = document.getElementById('phonebook');
-
-                const row = document.createElement('tr');
-                const nameCell = document.createElement('td');
-                const phoneCell = document.createElement('td');
-
-                nameCell.textContent = name;
-                phoneCell.textContent = phone;
-
-                row.appendChild(nameCell);
-                row.appendChild(phoneCell);
-                table.appendChild(row);
-
-                nameInput.value = '';
-                phoneInput.value = '';
-            } else {
-                alert('Please fill out both fields.');
+            if (!name || !phone) {
+                alert('Please enter both name and phone number.');
+                return;
             }
+
+            const existingContacts = document.querySelectorAll('.contact');
+            for (const contact of existingContacts) {
+                if (contact.dataset.name === name) {
+                    alert('Contact with this name already exists.');
+                    return;
+                }
+            }
+
+            const contactDiv = document.createElement('div');
+            contactDiv.className = 'contact';
+            contactDiv.dataset.name = name;
+
+            contactDiv.innerHTML = `
+                <span><strong>${name}</strong>: ${phone}</span>
+                <button onclick="deleteContact(this)">Delete</button>
+            `;
+
+            contactList.appendChild(contactDiv);
+
+            document.getElementById('name').value = '';
+            document.getElementById('phone').value = '';
+        }
+
+        function deleteContact(button) {
+            const contactDiv = button.parentElement;
+            contactList.removeChild(contactDiv);
         }
     </script>
 </body>
